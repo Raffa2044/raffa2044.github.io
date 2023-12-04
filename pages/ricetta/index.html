@@ -50,18 +50,23 @@
 
     <h2>Modulo</h2>
     <form action="test">
-        <h3>Email</h3>
-        <input type="email" name="Email" id="email">
-        <h3>Password</h3>
-        <input type="password" name="Password" id="password">
-        <h3>Acconsento al trattamento dei dati</h3>
-        <input type="checkbox" name="Acconsento al trattamento dei dati" id="trattamento">
-        <h3>Livello di Gradimento</h3>
-        <p>Spaziale</p><input type="radio" name="gradimento" id="spaziale">
-        <p>Ottimo</p><input type="radio" name="gradimento" id="ottimo">
-        <p>Buono</p><input type="radio" name="gradimento" id="buono">
+        <input type="email" name="Mail" id="mail" placeholder="Mail">
         <br>
-        <input type="button" value="submit">
+        <input type="password" name="Password" id="password" placeholder="Password">
+        <br><br>
+        <label for="consento">Acconsento al trattamento dei dati</label>
+        <input type="checkbox" name="Acconsento al trattamento dei dati" id="consento">
+        <br><br>
+        Livello di gradimento
+        <br>
+        <label for="ottimo">Buono</label>
+        <input type="radio" name="gradimento" id="buono">
+        <label for="ottimo">Bene</label>
+        <input type="radio" name="gradimento" id="bene">
+        <label for="ottimo">Male</label>
+        <input type="radio" name="gradimento" id="male">
+        <br><br>
+        <input type="button" value="Invia">
     </form>
 </body>
 </html>
