@@ -1,0 +1,21 @@
+h1{
+  color: #3795BD;
+  
+}
+
+.pari{
+  background-color:  #306ddf;
+}
+
+.int{
+  font-weight: bold
+}
+*{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: aliceblue;
+}
+

@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        "Noto Sans","Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    text-decoration: none;
+}
+
+#container * {
+    display: inline-block;
+}
+
+#logo {
+    padding: 0.25em 0.50;
+    margin-right: 1.5em;
+    font-size: 1.5rem;
+}
+
+#container {
+    position: relative;
+    margin: 0 10em;
+    padding: 0.25em 0.50em;
+}
+
+#bottoni > div > * {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.25em;
+    cursor: pointer;
+}
+
+#bottoni > div {
+    position: relative;
+}
+
+nav {
+    background-color: rgb(33, 37, 41);
+    padding: .5em 0;
+}
+
+form {
+    position: absolute;
+    height: 100%;
+    right: .5em;
+    top: 0;
+}
+
+form > * {
+    height: 100%;
+    border-radius: .375rem;
+    padding: .5em 1em;
+    box-sizing: border-box;
+}
+
+form > button {
+    border: none;
+    background-color: #198754;
+    transition: background-color .2s;
+    cursor: pointer;
+}
+
+form > button:hover {
+    background-color: #157347;
+}
+
+form > input {
+    background-color: transparent;
+    border: #495057 1px solid;
+    color: #dee2e6;
+}
+
+form > input::placeholder {
+    color: rgba(222,226,230,.75);
+    opacity: 1;
+}
+
+.arrow {
+    height: 100%;
+    position: relative;
+}
+
+.arrow > i {
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    border: solid rgba(255, 255, 255, 0.7);
+    border-width: 0 1.5pt 1.5pt 0;
+    display: inline-block;
+    padding: 1.5pt;
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none !important;
+    position: absolute;
+    background-color: rgb(33, 37, 41);
+    border: #495057 1px solid;
+    border-radius: .375rem;
+    padding: .5em 0 !important;
+    z-index: 1;
+    min-width: 10rem;
+}
+
+.dropdown-content > div > a {
+    display: block !important;
+    padding: 0.25em 1em;
+    color: #DEE2E6;
+    width: 100%;
+}
+
+.dropdown-content > div > a:hover {
+    background-color: #2b3035;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block !important;
+}
+body {
+    background-color: aliceblue;
+}

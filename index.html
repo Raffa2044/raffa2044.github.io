@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Sito di Raffaele Bevere</title>
+    <style>
+         body {
+            background-color: aliceblue;
+        }
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #3795BD;
+            margin: 0;
+            padding: 0;
+        }
+
+        a:hover {
+            color: #306ddf;
+        }
+
+        ol{
+            margin-top: 1em;
+            list-style: none;
+            counter-reset: items;
+        }
+
+        li {
+            counter-increment: items;
+        }
+
+        li:before {
+            color: black;
+            content: counter(items) ". ";
+        }
+
+        h1 {
+            text-align: center;
+            margin: 1em 0;
+        }
+        div {
+            margin: 0 10%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Progetti</h1>
+    <div>
+        <a href="https://gruppo1civica.github.io" target="_blank">Educazione civica</a>
+        <ol>
+            <li><a href="pages/ricetta/index.html" target="_blank">Ricetta</a></li>
+            <li><a href="pages/gallery/index.html" target="_blank">Gallery</a></li>
+            <li><a href="pages/provacss/index.html" target="_blank">Prova CSS</a></li>
+            <li><a href="pages/voti/index.html" target="_blank">Voti CSS</a></li>
+            <li><a href="pages/box-formattati/index.html" target="_blank">Box Formattati</a></li>
+            <li><a href="pages/portale-prova/index.html" target="_blank">Portale Prova</a></li>
+            <li><a href="pages/portale-migliorato/index.html" target="_blank">Portale Migliorato</a></li>
+            <li><a href="pages/navbar/index.html" target="_blank">Navbar</a></li>    
+            <li><a href="pages/icone/index.html" target="_blank">Icone</a></li>
+            <li><a href="pages/font-awesome/index.html" target="_blank">Font Awesome</a></li>
+            
+        </ol>
+    </div>
+</body>
+</html>

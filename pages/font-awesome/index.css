@@ -1,0 +1,14 @@
+#icons {
+    background-color: #3795BD;;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 1em;
+}
+
+#icons > i {
+    margin: 1em 1em;
+    display: inline-block;
+}
+body {
+    background-color: aliceblue;
+}
