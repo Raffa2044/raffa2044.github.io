@@ -120,6 +120,48 @@ form > input::placeholder {
 .dropdown:hover .dropdown-content {
     display: block !important;
 }
+
 body {
     background-color: aliceblue;
 }
+
+#uccidimi {
+    display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+    #container * {
+        display: block;
+    }
+
+    nav {
+        width: fit-content;
+    }
+
+    form, form * {
+        position: static;
+    }
+
+    form *, #bottoni > .dropdown > p, #bottoni > .dropdown > i {
+        display: inline-block !important;
+    }
+
+    #container {
+        margin: 0 1em;
+    }
+
+    /*#uccidimi {
+        display: block;
+        height: 4.5em;
+        width: 4.5em;
+        background-color: black;
+        padding-top: .001em;
+    }
+
+    #uccidimi > div {
+        background-color: white;
+        height: .5em;
+        width: 80%;
+        margin: .75em 10%;
+    }*/
+  }
