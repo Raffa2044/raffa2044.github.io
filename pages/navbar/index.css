@@ -150,11 +150,15 @@ body {
         margin: 0 1em;
     }
 
-    /*#uccidimi {
+    #bottoni {
+        margin: .5em 0;
+    }
+
+    #uccidimi {
         display: block;
         height: 4.5em;
         width: 4.5em;
-        background-color: black;
+        background-color: #2b3035;
         padding-top: .001em;
     }
 
@@ -163,5 +167,13 @@ body {
         height: .5em;
         width: 80%;
         margin: .75em 10%;
-    }*/
+    }
+
+    nav {
+        display: none;
+    }
+
+    #ac:hover > * {
+        display: block !important;
+    }
   }
