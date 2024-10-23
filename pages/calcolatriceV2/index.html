@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatrice v2</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #c3c3c3;
+        }
+        
+        .calcolatrice {
+            background-color: #100f0f;
+            width: 320px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        #input {
+            width: 100%;
+            height: 50px;
+            font-size: 22px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: right;
+            box-sizing: border-box;
+        }
+        
+        .bottoni {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        button {
+            height: 60px;
+            font-size: 24px;
+            background-color: #f0aa54;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .bottoni button:hover {
+            background-color: #e6e6e6;
+        }
+        
+        #risultato {
+            color: white;
+            display: block;
+            margin-top: 20px;
+            font-size: 22px;
+            text-align: right;
+        }
+        
+        #uguale {
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calcolatrice">
+        <h1>Calcolatrice</h1>
+        <input type="number" id="input" placeholder="Inserisci un numero">
+        <div class="bottoni">
+            <button onclick="scegliOperazione('+')">+</button>
+            <button onclick="scegliOperazione('-')">-</button>
+            <button onclick="scegliOperazione('*')">*</button>
+            <button onclick="scegliOperazione('/')">/</button>
+        </div>
+        <button onclick="calcola()" id="uguale">=</button>
+        <span id="risultato">Risultato: 0</span>
+    </div>
+    <script>
+        var numero1;
+        var operazione;
+
+        function scegliOperazione(op) {
+            numero1 = parseFloat(document.getElementById("input").value);
+            operazione = op;
+            document.getElementById("input").value = ""; // Pulisci l'input per il secondo numero
+            document.getElementById("input").placeholder = "Inserisci il secondo numero"; // Cambia il placeholder
+        }
+
+        function calcola() {
+            if (numero1 == undefined) return;
+            var numero2 = parseFloat(document.getElementById("input").value);
+            var risultato;
+            if (operazione === '+') {
+                risultato = numero1 + numero2;
+            } else if (operazione === '-') {
+                risultato = numero1 - numero2;
+            } else if (operazione === '*') {
+                risultato = numero1 * numero2;
+            } else if (operazione === '/') {
+                if (numero2 !== 0) {
+                    risultato = numero1 / numero2;
+                } else {
+                    risultato = "Errore: Divisione per zero";
+                }
+            }
+            document.getElementById("risultato").innerText = "Risultato: " + risultato;
+            document.getElementById("input").value = "";
+            document.getElementById("input").placeholder = "Inserisci un numero";
+            numero1 = undefined;
+        }
+    </script>
+</body>
+
+</html>
