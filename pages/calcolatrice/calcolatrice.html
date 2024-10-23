@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: acquamarine;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        #roba {
+            position: relative;
+            left: 50vw;
+            top: 50vh;
+            transform: translate(-50%, -50%);
+            width: 30vw;
+            background-color: rgb(241, 100, 13);
+            border-radius: 15px;
+            padding: 1em;
+        }
+        
+        p {
+            color: white;
+            text-align: right;
+            max-width: 15em;
+            left: 50%;
+            position: relative;
+            transform: translate(-50%, 0);
+        }
+        
+        #inputs {
+            width: min-content;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        
+        #inputs>input {
+            border: 2px solid #f61e1e;
+            padding: .5em;
+            border-radius: 5px;
+            margin: .25em 0;
+        }
+        
+        #bottoni {
+            margin-top: 1em;
+            max-width: 15em;
+            left: 50%;
+            position: relative;
+            transform: translate(-50%, 0);
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        
+        #bottoni>button {
+            padding: .2em .5em;
+            border-radius: 5px;
+            border: 2px solid #f61e1e;
+        }
+    </style>
+    <title>Calcolatrice</title>
+</head>
+
+<body>
+    <div id="roba">
+        <h1>Calcolatrice</h1>
+        <div id="inputs">
+            <input type="number" id="input1" placeholder="Inserisci un numero1">
+            <input type="number" id="input2" placeholder="Inserisci un numero2">
+        </div>
+        <div id="bottoni">
+            <button onclick="scegliOperazione('+')">+</button>
+            <button onclick="scegliOperazione('-')">-</button>
+            <button onclick="scegliOperazione('*')">*</button>
+            <button onclick="scegliOperazione('/')">/</button>
+            <button onclick="calcola()">=</button>
+        </div>
+        <p>Risultato: <span id="risultato"></span></p>
+    </div>
+
+    <script>
+        var operazione;
+
+        function scegliOperazione(op) {
+            operazione = op;
+        }
+
+        function calcola() {
+            var numero1 = parseFloat(document.getElementById("input1").value);
+            var numero2 = parseFloat(document.getElementById("input2").value);
+            var risultato;
+            if (operazione === '+') {
+                risultato = numero1 + numero2;
+            } else if (operazione === '-') {
+                risultato = numero1 - numero2;
+            } else if (operazione === '*') {
+                risultato = numero1 * numero2;
+            } else if (operazione === '/') {
+                if (numero2 !== 0) {
+                    risultato = numero1 / numero2;
+                } else {
+                    risultato = "Errore: Divisione per zero";
+                }
+            }
+            document.getElementById("risultato").innerText = risultato;
+        }
+    </script>
+</body>
+
+</html>
