@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagrafica</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        margin: 10px 0;
+        padding: 10px;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    button {
+        background-color: #e4b20d;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #e4b20d;
+    }
+
+    table {
+        margin-top: 20px;
+        border-collapse: collapse;
+        width: 80%;
+        max-width: 800px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+    th {
+        background-color: #e4b20d;
+        color: white;
+    }
+</style>
+
+<body>
+    <input type="text" id="nome" placeholder="inserisci il nome">
+    <input type="text" id="cognome" placeholder="inserisci il cognome">
+    <input type="text" id="indirizzo" placeholder="inserisci l'indirizzo">
+    <input type="text" id="citta" placeholder="inserisci la città">
+    <input type="text" id="email" placeholder="inserisci l'email">
+    <input type="text" id="codiceFiscale" placeholder="inserisci il codice fiscale">
+    <button onclick="aggiungiDati()">OK</button>
+    <div id="tabella"></div>
+</body>
+<script>
+    const dati = [];
+    const nome = document.getElementById("nome");
+    const cognome = document.getElementById("cognome");
+    const indirizzo = document.getElementById("indirizzo");
+    const citta = document.getElementById("citta");
+    const email = document.getElementById("email");
+    const codiceFiscale = document.getElementById("codiceFiscale");
+    const divTabella = document.getElementById("tabella");
+
+    function aggiungiDati() {
+        var vet = [nome.value, cognome.value, indirizzo.value, citta.value, email.value, codiceFiscale.value];
+        dati.push(vet);
+        stampaTabella();
+    }
+
+    function stampaTabella() {
+        var html = "<table>";
+        for (var i = 0; i < dati.length; i++) {
+            html += `<tr><td>${dati[i][0]}</td>
+<td>${dati[i][1]}</td>
+<td>${dati[i][2]}</td>
+<td>${dati[i][3]}</td>
+<td>${dati[i][4]}</td>
+<td>${dati[i][5]}</td>
+</tr>`;
+        }
+        html += "</table>"
+        divTabella.innerHTML = html;
+    }
+</script>
+
+</html>
