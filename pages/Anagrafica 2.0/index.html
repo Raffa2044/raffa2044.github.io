@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagrafica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #e4b20d;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c99e09;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e4b20d;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="formAnagrafica" onsubmit="aggiungiDati(event)">
+        <input type="text" id="nome" placeholder="Inserisci il nome" required pattern="[a-zA-Z]+" title="Il nome deve contenere solo lettere.">
+        <input type="text" id="cognome" placeholder="Inserisci il cognome" required pattern="[a-zA-Z]+" title="Il cognome deve contenere solo lettere.">
+        <input type="text" id="indirizzo" placeholder="Inserisci l'indirizzo" required>
+        <input type="text" id="citta" placeholder="Inserisci la città" required pattern="[a-zA-Z\s]+" title="La città deve contenere solo lettere.">
+        <input type="email" id="email" placeholder="Inserisci l'email" required>
+        <input type="text" id="codiceFiscale" placeholder="Inserisci il codice fiscale" required>
+        <button type="submit">OK</button>
+    </form>
+    <div id="tabella"></div>
+    <script>
+        const dati = [];
+        const divTabella = document.getElementById("tabella");
+        function aggiungiDati(event) {
+            event.preventDefault();
+            const form = document.getElementById("formAnagrafica");
+            if (!form.checkValidity()) {
+                alert("Errore nei dati inseriti. Controlla i campi evidenziati.");
+                form.reportValidity(); 
+                return;
+            }
+            const vet = [
+                document.getElementById("nome").value,
+                document.getElementById("cognome").value,
+                document.getElementById("indirizzo").value,
+                document.getElementById("citta").value,
+                document.getElementById("email").value,
+                document.getElementById("codiceFiscale").value
+            ];
+            dati.push(vet);
+            stampaTabella();
+        }
+        function stampaTabella() {
+            let html = "<table>";
+            html += `
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Indirizzo</th>
+                    <th>Città</th>
+                    <th>Email</th>
+                    <th>Codice Fiscale</th>
+                </tr>`;
+            for (let i = 0; i < dati.length; i++) {
+                html += `<tr>
+                    <td>${dati[i][0]}</td>
+                    <td>${dati[i][1]}</td>
+                    <td>${dati[i][2]}</td>
+                    <td>${dati[i][3]}</td>
+                    <td>${dati[i][4]}</td>
+                    <td>${dati[i][5]}</td>
+                </tr>`;
+            }
+            html += "</table>";
+            divTabella.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
