@@ -58,6 +58,7 @@
             let reader = new FileReader();
             reader.readAsText(file);
             reader.onload = function () {
+                let csvContent = reader.result;
                 let rows = csvContent.split("\n");
                 let tabella = '<table>';
                 for (let i = 0; i < rows.length; i++) {
