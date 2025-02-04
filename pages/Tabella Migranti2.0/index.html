@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizzatore CSV v2.0</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        #contenitore {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 70%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            font-size: 22px;
+        }
+        input {
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        canvas {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenitore">
+        <h1>Visualizzatore CSV</h1>
+        <input type="file" onchange="apri(this)">
+        <div id="contenuto"></div>
+        <canvas id="graficoCanvas" width="600" height="350"></canvas>
+    </div>
+
+    <script>
+        function apri(input) {
+            let file = input.files[0];
+            let lettore = new FileReader();
+            lettore.readAsText(file);
+            lettore.onload = function () {
+                let righeCSV = lettore.result.split("\n");
+                let tabellaHTML = "<table>";
+                let anni = [];
+                let valoriPicco = [];
+                righeCSV.forEach((riga, index) => {
+                    let celle = riga.split(",");
+                    if (index === 0) {
+                        tabellaHTML += "<tr>" + celle.map(cell => `<th>${cell}</th>`).join("") + "</tr>";
+                    } else {
+                        let anno = celle[0].trim();
+                        let valorePicco = parseFloat(celle[1]);
+                        if (!isNaN(valorePicco)) {
+                            anni.push(anno);
+                            valoriPicco.push(valorePicco);
+                        }
+                        tabellaHTML += "<tr>" + celle.map(cell => `<td>${cell}</td>`).join("") + "</tr>";
+                    }
+                });
+
+                tabellaHTML += "</table>";
+                document.getElementById("contenuto").innerHTML = tabellaHTML;
+
+                if (valoriPicco.length) {
+                    disegnaGrafico(anni, valoriPicco);
+                }
+            };
+        }
+
+        function disegnaGrafico(anni, valoriPicco) {
+            let canvas = document.getElementById("graficoCanvas");
+            let ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let larghezza = canvas.width;
+            let altezza = canvas.height;
+            let margineX = 50;
+            let margineY = 40;
+
+            let piccoMassimo = Math.max(...valoriPicco);
+            let piccoMinimo = Math.min(...valoriPicco);
+            let distanzaTraPunti = (larghezza - margineX * 2) / (valoriPicco.length - 1);
+            let scalaY = (altezza - margineY * 2) / (piccoMassimo - piccoMinimo || 1);
+
+            // Disegna la griglia
+            ctx.strokeStyle = "#ddd";
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 5; i++) {
+                let y = altezza - margineY - (i * (altezza - margineY * 2) / 5);
+                ctx.beginPath();
+                ctx.moveTo(margineX, y);
+                ctx.lineTo(larghezza - margineX, y);
+                ctx.stroke();
+            }
+          
+            // Disegna la linea
+            ctx.strokeStyle = "blue";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(margineX, altezza - margineY - (valoriPicco[0] - piccoMinimo) * scalaY);
+            for (let i = 1; i < valoriPicco.length; i++) {
+                ctx.lineTo(margineX + i * distanzaTraPunti, altezza - margineY - (valoriPicco[i] - piccoMinimo) * scalaY);
+            }
+            ctx.stroke();
+
+            // Etichette asse X (anni)
+            ctx.fillStyle = "black";
+            ctx.textAlign = "right";
+            ctx.font = "12px Arial";
+            anni.forEach((anno, i) => {
+                let x = margineX + i * distanzaTraPunti;
+                ctx.save();
+                ctx.translate(x, altezza - margineY + 15);
+                ctx.rotate(-Math.PI / 6);
+                ctx.fillText(anno, 0, 0);
+                ctx.restore();
+            });
+        }
+    </script>
+</body>
+</html>
+
