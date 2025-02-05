@@ -77,7 +77,7 @@
                         tabellaHTML += "<tr>" + celle.map(cell => `<th>${cell}</th>`).join("") + "</tr>";
                     } else {
                         let anno = celle[0].substring(1,celle[0].length-1).trim();
-                        let valorePicco = parseFloat(celle[1].substring(1,celle[1].length-1);
+                        let valorePicco = parseFloat(celle[1].substring(1,celle[1].length-1));
                         anni.push(anno);
                         valoriPicco.push(valorePicco);
                         tabellaHTML += "<tr>" + celle.map(cell => `<td>${cell}</td>`).join("") + "</tr>";
