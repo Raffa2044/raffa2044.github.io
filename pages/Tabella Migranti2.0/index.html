@@ -78,10 +78,8 @@
                     } else {
                         let anno = celle[0].substring(1,celle[0].length-1).trim();
                         let valorePicco = parseFloat(celle[1].substring(1,celle[1].length-1);
-                        if (!isNaN(valorePicco)) {
-                            anni.push(anno);
-                            valoriPicco.push(valorePicco);
-                        }
+                        anni.push(anno);
+                        valoriPicco.push(valorePicco);
                         tabellaHTML += "<tr>" + celle.map(cell => `<td>${cell}</td>`).join("") + "</tr>";
                     }
                 });
