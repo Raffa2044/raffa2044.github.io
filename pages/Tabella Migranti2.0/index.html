@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizzatore CSV V2.0</title>
+    <title>Visualizzatore CSV v2.0</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -117,6 +117,10 @@
                 ctx.moveTo(margineX, y);
                 ctx.lineTo(larghezza - margineX, y);
                 ctx.stroke();
+                if (i != 0) {
+                    ctx.textAlign = "right";
+                    ctx.fillText(Math.round((piccoMassimo*i)/5), margineX-5, y+4);
+                }
             }
           
             // Disegna la linea
@@ -145,5 +149,4 @@
     </script>
 </body>
 </html>
-
 
