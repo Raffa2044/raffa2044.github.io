@@ -8,16 +8,15 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f4f4f9;
+            background-color:white;
             margin: 0;
         }
         #contenitore {
-            background: white;
+            background:lightblue;
             padding: 20px;
             margin: 20px auto;
             width: 70%;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         h1 {
             color: #007bff;
@@ -26,7 +25,7 @@
         input {
             margin: 10px 0;
             padding: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid black;
             border-radius: 5px;
         }
         table {
@@ -35,7 +34,7 @@
             margin-top: 15px;
         }
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid black;
             padding: 8px;
             text-align: center;
         }
@@ -48,8 +47,9 @@
         }
         canvas {
             margin-top: 20px;
-            border: 1px solid #ddd;
-            background: white;
+            background:grey;
+            border-radius: 10px;
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -71,16 +71,16 @@
                 let tabellaHTML = "<table>";
                 let anni = [];
                 let valoriPicco = [];
-                for (let index = 0; index < 0; index++) {
+                for (let index = 0; index < righeCSV.length; index++) {
                     let celle = righeCSV[index].split(",");
+                    celle[0] = celle[0].substring(1,celle[0].length-1);
+                    celle[1] = celle[1].substring(1,celle[1].length-1);
                     if (index === 0) {
-                        tabellaHTML += "<tr>" + celle.map(cell => `<th>${cell}</th>`).join("") + "</tr>";
+                        tabellaHTML += "<tr><th>" + celle[0] + "</th><th>" + celle[1]  + "</th></tr>";
                     } else {
-                        let anno = celle[0].substring(1,celle[0].length-1).trim();
-                        let valorePicco = parseFloat(celle[1].substring(1,celle[1].length-1));
-                        anni.push(anno);
-                        valoriPicco.push(valorePicco);
-                        tabellaHTML += "<tr>" + celle.map(cell => `<td>${cell}</td>`).join("") + "</tr>";
+                        anni.push(celle[0]);
+                        valoriPicco.push(parseFloat(celle[1]));
+                        tabellaHTML += "<tr><td>" + celle[0] + "</td><td>" + celle[1] + "</td></tr>";
                     }
                 }
 
@@ -133,16 +133,17 @@
             ctx.fillStyle = "black";
             ctx.textAlign = "right";
             ctx.font = "12px Arial";
-            anni.forEach((anno, i) => {
+            for (let i = 0; i < anni.length; i++) {
                 let x = margineX + i * distanzaTraPunti;
                 ctx.save();
                 ctx.translate(x, altezza - margineY + 15);
                 ctx.rotate(-Math.PI / 6);
-                ctx.fillText(anno, 0, 0);
+                ctx.fillText(anni[i], 0, 0);
                 ctx.restore();
-            });
+            };
         }
     </script>
 </body>
 </html>
+
 
