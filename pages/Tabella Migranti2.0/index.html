@@ -108,7 +108,7 @@
             let piccoMassimo = Math.max(...valoriPicco);
             let piccoMinimo = Math.min(...valoriPicco);
             let distanzaTraPunti = (larghezza - margineX * 2) / (valoriPicco.length - 1);
-            let scalaY = (altezza - margineY * 2) / (piccoMassimo - piccoMinimo || 1);
+            let scalaY = (altezza - margineY * 2) / (piccoMassimo - piccoMinimo);
 
             // Disegna la griglia
             ctx.strokeStyle = "#ddd";
