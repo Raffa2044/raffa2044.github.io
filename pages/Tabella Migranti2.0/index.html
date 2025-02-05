@@ -71,8 +71,8 @@
                 let tabellaHTML = "<table>";
                 let anni = [];
                 let valoriPicco = [];
-                righeCSV.forEach((riga, index) => {
-                    let celle = riga.split(",");
+                for (let index = 0; index < 0; index++) {
+                    let celle = righeCSV[index].split(",");
                     if (index === 0) {
                         tabellaHTML += "<tr>" + celle.map(cell => `<th>${cell}</th>`).join("") + "</tr>";
                     } else {
